@@ -60,16 +60,26 @@ const TYPE_IMAGE = Symbol()
 ```
 
 ## 使用场景2.使用Symbol作为对象属性名
+Symobol的key值是不通话通过Object.keys或者for in来获取的，它未被包含在对象自身的属性名集合（property names）之中。所以利用该特性，我们可以把一些不需要对外操作和访问的属性使用Symbol来定义。
 ```markdown
 const PROP_NAME = Symbol()
 const PROP_AGE = Symbol()
 
 let obj = {
-  [PROP_NAME]: "一斤代码"
+  [PROP_NAME]: 'foo',
+  [Symbol('name')]:'bar',
+  title:'symbol'
 }
-obj[PROP_AGE] = 18
-
-obj[PROP_NAME] // '一斤代码'
-obj[PROP_AGE] // 18
+Object.keys(obj)   //["title"]
+for(let i in obj){
+  console.log(i)   //'title'
+}
+Object.getOwnPropertyNames(obj)//["title"]
+JSON.stringify(obj)//'{'title':'symbol'}'
 ```
-
+可以利用这一特性来更好的设计我们的数据对象，让对内操作和对外选择输出变得更加优雅。
+有专门的api获取以Symbol方法定义的对象属性
+```markdown
+Object.getOwnPropertySymbols(obj)//[Symbol(), Symbol(name)]
+Reflect.ownkey(objs)//[Symbol(), Symbol(name),'title']
+```
