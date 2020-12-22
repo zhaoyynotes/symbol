@@ -86,3 +86,12 @@ Reflect.ownKeys(objs)//["title", Symbol(), Symbol(name)]
 ```
 
 ## 使用场景3.使用Symbol定义类的私有方法和属性
+因为使用者无法在外部创建出一个像他的say,所以就无法调用这个方法
+```markdown
+const say = Symbol();
+class Person{
+  [say](){
+    console.log('say')
+  }
+}
+```
