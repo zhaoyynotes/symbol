@@ -60,6 +60,7 @@ const TYPE_IMAGE = Symbol()
 ```
 
 ## 使用场景2.使用Symbol作为对象属性名
+当一个复杂对象中含有多个属性的时候，很容易将某个属性名覆盖掉，利用Symbol值作为属性名可以很好的避免这一现象。
 Symobol的key值是不通话通过Object.keys或者for in来获取的，它未被包含在对象自身的属性名集合（property names）之中。所以利用该特性，我们可以把一些不需要对外操作和访问的属性使用Symbol来定义。
 ```markdown
 const PROP_NAME = Symbol()
@@ -83,3 +84,5 @@ JSON.stringify(obj)//'{'title':'symbol'}'
 Object.getOwnPropertySymbols(obj)//[Symbol(), Symbol(name)]
 Reflect.ownKeys(objs)//["title", Symbol(), Symbol(name)]
 ```
+
+## 使用场景3.使用Symbol定义类的私有方法和属性
