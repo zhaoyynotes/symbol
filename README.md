@@ -81,5 +81,5 @@ JSON.stringify(obj)//'{'title':'symbol'}'
 有专门的api获取以Symbol方法定义的对象属性
 ```markdown
 Object.getOwnPropertySymbols(obj)//[Symbol(), Symbol(name)]
-Reflect.ownkey(objs)//[Symbol(), Symbol(name),'title']
+Reflect.ownKeys(objs)//["title", Symbol(), Symbol(name)]
 ```
